@@ -1,0 +1,326 @@
+<div class="content">
+   
+  
+ 
+    <div id="question1" class="question">
+       <p class="title1">1. What type of self-directed IRA or 401(k) investment do you want to do?</p>
+       <p class="title2">Please select an option below:</p>
+       <br>
+       <div class="options">
+          <button onclick="showQuestion2('Real estate')">Real estate</button>
+          <button onclick="showQuestion2('Hedge fund')">Hedge fund</button>
+          <button onclick="showQuestion2('Real estate fund')">Real estate fund</button>
+          <button onclick="showQuestion2('Private equity')">Private equity</button>
+          <button onclick="showQuestion2('Venture capital')">Venture capital</button>
+          <button onclick="showQuestion2('Private business (less than 50%)')">Private business (less than 50%)</button>
+          <button onclick="showQuestion2('Private business (over 50%)')">Private business (over 50%)</button>
+          <button onclick="showQuestion2('Carried interest')">Carried interest</button>
+          <button onclick="showQuestion2('Founder stock')">Founder stock</button>
+          <button onclick="showQuestion2('Precious metals')">Precious metals</button>
+          <button onclick="showQuestion2('Cryptos')">Cryptos</button>
+          <button onclick="showQuestion2('Other')">Other</button>
+          <p class="titleCloseQuiz" onclick="closeQuiz()"><u>Close Quiz</u></p>
+       </div>
+    </div></div>
+  
+  <script>
+  function closeQuiz() {
+     document.getElementById('action').style.display = 'block';
+     document.getElementById('question1').style.display = 'none';
+     document.getElementById('question2').style.display = 'none';
+     document.getElementById('question3').style.display = 'none';
+  
+  }
+  
+  function showQuestion1() {
+    // Remove dynamically created elements
+    var dynamicElements = document.querySelectorAll('#question2, #question3, #result');
+    dynamicElements.forEach(function(element) {
+        element.remove();
+    });
+  
+    document.getElementById('question1').style.display = 'block';
+    document.getElementById('action').style.display = 'none';
+  }
+  
+  function showQuestion2(answer1) {
+     document.getElementById('question1').style.display = 'none';
+  
+     var question2 = document.createElement('div');
+     question2.id = 'question2';
+     question2.className = 'question';
+     question2.innerHTML = '<p class="title1">2. Are you self-employed or have a small business with no full-time employees other than the owners?</p>' +
+         ' <p class="title2">Please select an option below:</p>' +
+         '<br>' +
+         '<div class="options">' +
+         '<button id="bottonQuestion" onclick="showQuestion3(\'' + answer1 + '\', \'Yes\')">Yes</button>' +
+         '<button id="bottonQuestion" onclick="showQuestion3(\'' + answer1 + '\', \'No\')">No</button>' +
+         '</div>' +
+         '<br><p class="title2" onclick="closeQuiz()"><u>Close Quiz</u></p>';
+  
+     document.querySelector('.content').appendChild(question2);
+  }
+  
+  function showQuestion3(answer1, answer2) {
+     document.getElementById('question2').style.display = 'none';
+  
+     if (answer2 === 'No' && ['Real estate', 'Hedge fund', 'Real estate fund', 'Private equity', 'Private business (less than 50%)', 'Venture capital', 'Carried interest', 'Founder stock', 'Precious metals'].includes(answer1)) {
+         var question3 = document.createElement('div');
+         question3.id = 'question3';
+         question3.className = 'question';
+         question3.innerHTML = '<p class="title3">3. Do you want to use an LLC to make IRA investments to gain more control and benefit from limited liability protection? <br>The use of an LLC is recommended for most real estate investors as well as investors who want more control and privacy.</p>' +
+             ' <p class="title2">Please select an option below:</p>' +
+             '<br>' +
+             '<div class="options">' +
+             '<button id="bottonQuestion" onclick="showResult(\'' + answer1 + '\', \'' + answer2 + '\', \'Yes\')">Yes</button>' +
+             '<button id="bottonQuestion" onclick="showResult(\'' + answer1 + '\', \'' + answer2 + '\', \'No\')">No</button>' +
+             '</div>' +
+             '<br><p class="title2" onclick="closeQuiz()"><u>Close Quiz</u></p>';
+  
+         document.querySelector('.content').appendChild(question3);
+     } else {
+         showResult(answer1, answer2, );
+     }
+  }
+  
+  function showResult(answer1, answer2, answer3) {
+     document.getElementById('question2').style.display = 'none';
+     if (answer2 == 'Yes' && ['Real estate', 'Hedge fund', 'Real estate fund', 'Private equity', 'Private business (less than 50%)', 'Venture capital', 'Carried interest', 'Founder stock', 'Precious metals', 'Other'].includes(answer1)) {
+         var result = document.createElement('div');
+         result.id = 'result';
+         result.innerHTML = '<div class="container">' +
+             '<div class="image">' +
+             '<img src="https://i.imgur.com/HP4buJT.png" alt="Imagem">' +
+             '</div>' +
+             '<div class="text">' +
+             '<h2>Solo (401k) suits you the best!</h2>' +
+             '<p>With a custodian-controlled IRA, you tell us the investments you want to make, and we’ll do all the work. Invest in traditional and alternative assets, like real estate.</p>' +
+             '<div class="buttons">' +
+             '<button class="button2">Get Started</button>' +
+             '<button class="button2" id="button2" onclick="showQuestion1()">Try Again</button>' +
+             '</div>' +
+             '</div>' +
+             '</div>'
+  
+         document.querySelector('.content').appendChild(result);
+  
+  
+     }
+     if (['Private business (over 50%)'].includes(answer1)) {
+         var result = document.createElement('div');
+         result.id = 'result';
+         result.innerHTML = '<div class="container">' +
+             '<div class="image">' +
+             '<img src="https://i.imgur.com/gClVHxL.png" alt="Imagem">' +
+             '</div>' +
+             '<div class="text">' +
+             '<h2>ROBS suits you the best!</h2>' +
+             '<p>With a custodian-controlled IRA, you tell us the investments you want to make, and we’ll do all the work. Invest in traditional and alternative assets, like real estate.</p>' +
+             '<div class="buttons">' +
+             '<button class="button2">Get Started</button>' +
+             '<button class="button2" id="button2" onclick="showQuestion1()">Try Again</button>' +
+             '</div>' +
+             '</div>' +
+             '</div>'
+         document.querySelector('.content').appendChild(result);
+  
+  
+     }
+     if (['Cryptos'].includes(answer1)) {
+         var result = document.createElement('div');
+         result.id = 'result';
+         result.innerHTML = '<div class="container">' +
+             '<div class="image">' +
+             '<img src="https://i.imgur.com/kO4ewOf.png" alt="Imagem">' +
+             '</div>' +
+             '<div class="text">' +
+             '<h2>IRAfiCrypto suits you the best!</h2>' +
+             '<p>With a custodian-controlled IRA, you tell us the investments you want to make, and we’ll do all the work. Invest in traditional and alternative assets, like real estate.</p>' +
+             '<div class="buttons">' +
+             '<button class="button2">Get Started</button>' +
+             '<button class="button2" id="button2" onclick="showQuestion1()">Try Again</button>' +
+             '</div>' +
+             '</div>' +
+             '</div>'
+         document.querySelector('.content').appendChild(result);
+  
+  
+  
+     }
+     if (answer3 == 'Yes') {
+         document.getElementById('question3').style.display = 'none';
+         var result = document.createElement('div');
+         result.id = 'result';
+         result.innerHTML = '<div class="container">' +
+             '<div class="image">' +
+             '<img src="https://i.imgur.com/Imb4110.png" alt="Imagem">' +
+             '</div>' +
+             '<div class="text">' +
+             '<h2>Self-Directed IRA  LLC suits you the best!</h2>' +
+             '<p>With a custodian-controlled IRA, you tell us the investments you want to make, and we’ll do all the work. Invest in traditional and alternative assets, like real estate.</p>' +
+             '<div class="buttons">' +
+             '<button class="button2">Get Started</button>' +
+             '<button class="button2" id="button2" onclick="showQuestion1()">Try Again</button>' +
+             '</div>' +
+             '</div>' +
+             '</div>'
+         document.querySelector('.content').appendChild(result);
+  
+  
+     }
+     if (answer3 == 'No') {
+         document.getElementById('question3').style.display = 'none';
+         var result = document.createElement('div');
+         result.id = 'result';
+         result.innerHTML = '<div class="container">' +
+             '<div class="image">' +
+             '<img src="https://i.imgur.com/GGvHNfb.png" alt="Imagem">' +
+             '</div>' +
+             '<div class="text">' +
+             '<h2>Self-Directed IRA suits you the best!</h2>' +
+             '<p>With a custodian-controlled IRA, you tell us the investments you want to make, and we’ll do all the work. Invest in traditional and alternative assets, like real estate.</p>' +
+             '<div class="buttons">' +
+             '<button class="button2">Get Started</button>' +
+             '<button class="button2" id="button2" onclick="showQuestion1()">Try Again</button>' +
+             '</div>' +
+             '</div>' +
+             '</div>'
+  
+         document.querySelector('.content').appendChild(result);
+  
+     }
+  }
+  </script>
+
+<style>.content {
+    width: 659px;
+    color: #000;
+    font-family: 'Roboto', sans-serif;
+    margin: 20px auto;
+    border: 2px solid #585858;
+    padding: 20px;
+    border-radius: 10px;
+    height: 650px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+button:hover {
+    background: rgba(78, 27, 157, 1);
+    opacity: 0.9;
+}
+
+.title1, .title2, .title4, .titleCloseQuiz, .title3 {
+    text-align: center;
+    cursor: pointer;
+}
+
+.title1 {
+    font-weight: 700;
+    font-size: 24px;
+}
+
+.title2 {
+    font-weight: 400;
+    font-size: 14px;
+    margin-top: -30px;
+}
+
+.title4 {
+    font-weight: 700;
+    font-size: 30px;
+}
+
+.titleCloseQuiz {
+    font-weight: 400;
+    font-size: 12px;
+}
+
+.title3 {
+    font-weight: 700;
+    font-size: 16px;
+    width: 566px;
+    margin: 0 auto;
+}
+
+.container {
+    display: flex;
+    
+    align-items: center;
+}
+
+.image {
+        min-width:  306px;
+     min-height: 259px;
+     margin-right: 20px;
+}
+
+
+.image2 {
+   width: 350px;
+   height: 262px;
+  0
+   margin-right: 10px;
+
+}
+
+.text h2 {
+    font-weight: 700;
+    font-size: 27px;
+    margin-bottom: 10px;
+   
+}
+
+.text p {
+    font-weight: 400;
+    font-size: 13.4px;
+    line-height: 15px;
+}
+
+.buttons {
+    margin-top: 10px;
+}
+#action .text{
+    width: 260px;
+    
+}
+
+button {
+    margin: 0 auto 25px 20px;
+    font-weight: 500;
+    font-size: 15px;
+    color: #fff;
+    cursor: pointer;
+    width: 274px;
+    height: 40px;
+    border-radius: 60px;
+    background: rgba(78, 27, 157, 1);
+    border: none;
+    padding: 5px;
+}
+
+.button2, .button3 {
+    width: 111px;
+    margin-left: 0;
+    margin-right: 14px;
+    border-radius: 60px;
+}
+
+.button3 {
+    width: 160px;
+     background-image: linear-gradient(to right, #5964FE 20%, #581DB5 100%);
+    
+}
+
+#button2 {
+    color: rgba(78, 27, 157, 1);
+    background-color: #fff;
+    border: solid 1px #4E1B9D;
+}
+
+#question1 button, #question2 button, #question3 button {
+    background-image: linear-gradient(to right, #5964FE 20%, #581DB5 100%);
+}
+</style>
